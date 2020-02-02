@@ -7,4 +7,5 @@ https://repl.it/@nicholasvitebsky/Project-Euler-Python
 
 https://repl.it/@nicholasvitebsky/Project-Euler-Java
 
-### Java file will be added soon.
+### Python - 8 solved
+### Java - ?
