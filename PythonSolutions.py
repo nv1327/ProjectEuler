@@ -153,7 +153,17 @@ def LargestSeriesProduct():
   print (currentmax)
 
 
-
+#Problem 9
+def PythTriplet():
+  for x in range(1, 550):
+    for y in range(1, 550):
+      num1 = x * x
+      num2 = y * y
+      num3 = math.sqrt(num1 + num2) #needs to be a float or Python begins to round numbers which leads to incorrect results
+      if x + y + num3 == 1000:
+        print (x, y, num3)
+        product = x * y * num3
+        print (product)
 
   
 #All Problems
@@ -164,4 +174,5 @@ def LargestSeriesProduct():
 #SmallestMultiple()     #Problem 5
 #SumSquareDifference()  #Problem 6
 #TenThousandthPrime()   #Problem 7
-LargestSeriesProduct() #Problem 8
+#LargestSeriesProduct() #Problem 8
+PythTriplet()          #Problem 9
