@@ -7,5 +7,6 @@ https://repl.it/@nicholasvitebsky/Project-Euler-Python
 
 https://repl.it/@nicholasvitebsky/Project-Euler-Java
 
-### Python - 8 solved
-### Java - ?
+## Problem Tally:
+### Python - 8 problems solved in PythonSolutions.py
+### Java - pending... I need to get the file from another computer
