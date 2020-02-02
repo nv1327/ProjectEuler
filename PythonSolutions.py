@@ -165,6 +165,17 @@ def PythTriplet():
         product = x * y * num3
         print (product)
 
+
+#Problem 10
+def PrimeSum():
+  sum = 2 #I'm doing this bc I want to skip even numbers so I skipped over 2 in the for loop, so this should be 0 to start but I'm including 2 in the sum
+  for i in range(3, 2000000, 2):
+    prime = isPrime(i)
+    if prime == True:
+      print (i)
+      sum += i
+  print (sum)
+
   
 #All Problems
 #Multiplesof3and5()     #Problem 1
@@ -175,4 +186,5 @@ def PythTriplet():
 #SumSquareDifference()  #Problem 6
 #TenThousandthPrime()   #Problem 7
 #LargestSeriesProduct() #Problem 8
-PythTriplet()          #Problem 9
+#PythTriplet()          #Problem 9
+PrimeSum()             #Problem 10
