@@ -9,4 +9,4 @@ https://repl.it/@nicholasvitebsky/Project-Euler-Java
 
 ## Problem Tally:
 ### Python - 10 problems solved in PythonSolutions.py
-### Java - pending... I need to get the file from another computer
+### Java - 7 problems solved in JavaSolutions.java
