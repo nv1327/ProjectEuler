@@ -8,5 +8,5 @@ https://repl.it/@nicholasvitebsky/Project-Euler-Python
 https://repl.it/@nicholasvitebsky/Project-Euler-Java
 
 ## Problem Tally:
-### Python - 10 problems solved in PythonSolutions.py
+### Python - 14 problems solved in PythonSolutions.py (skipped #11 and #15 for now)
 ### Java - 7 problems solved in JavaSolutions.java
