@@ -402,35 +402,165 @@ def PowerDigitSum():
 #Problem 17
 def NumberLetterCounts():
   #Number of letters in each word
-  one = 3
-  two = 3
-  three = 5
+  result = ""
+  sum = 0
+  
+  oneslist = [0, "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+  
+  tenslist = [0, "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+
+  teens = [0, "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+
+  one = 1
+  two = 2
+  three = 3
   four = 4
-  five = 4
-  six = 3
-  seven = 5
-  eight = 5
-  nine = 4
-  ten = 3
-  eleven = 6
-  twelve = 6
-  thirteen = 8
-  fourteen = 8
-  fifteen = 7
-  sixteen = 7
-  seventeen = 9
-  eighteen = 8
-  nineteen = 8
-  twenty = 6
-  thirty = 6
-  forty = 5
-  fifty = 5
-  sixty = 5
-  seventy = 7
-  eighty = 6
-  ninety = 6
-  hundred = 7 #no ten hundred though
-  thousand = 8
+  five = 5
+
+  onesdigit = 0
+  tensdigit = 0
+  hundredsdigit = 0
+
+  for i in range(1,1001):
+    if i < 10:
+      result = oneslist[i]
+    elif i % 10 == 0 and i < 100:
+      tensdigit = int((i % 100) / 10)
+      result = tenslist[tensdigit]
+    elif 10 < i < 20:
+      onesdigit = i % 10
+      result = teens[onesdigit]
+    elif 20 < i < 100:
+      tensdigit = int((i % 100) / 10)
+      onesdigit = i % 10
+      result = tenslist[tensdigit] + oneslist[onesdigit]
+    elif 99 < i < 1000:
+      hundredsdigit = int((i % 1000) / 100)
+      tensdigit = int((i % 100) / 10)
+      onesdigit = i % 10
+      if onesdigit == 0 and tensdigit == 0:
+        result = str(oneslist[hundredsdigit]) + "hundred"
+      elif tensdigit == 0:
+        result = str(oneslist[hundredsdigit]) + "hundred" + "and" + str(oneslist[onesdigit])
+      elif tensdigit == 1 and onesdigit != 0:
+        result = str(oneslist[hundredsdigit]) + "hundred" + "and" + str(teens[onesdigit])
+      elif tensdigit == 1 and onesdigit == 0:
+        result = str(oneslist[hundredsdigit]) + "hundred" + "and" + str(tenslist[tensdigit])
+      elif onesdigit == 0:
+        result = str(oneslist[hundredsdigit]) + "hundred" + "and" + str(tenslist[tensdigit])
+      else:
+        result = str(oneslist[hundredsdigit]) + "hundred" + "and" + str(tenslist[tensdigit]) + str(oneslist[onesdigit])
+    elif i == 1000:
+      result = "onethousand"
+    sum += len(result)
+  print(sum)
+      
+
+#Problem 18
+def MaxPathSum1():
+  sum = 0
+  rows = 4
+
+  currentnum = ""
+  numbers = "3 7 4 2 4 6 8 5 9 3 " #detect, if space, then take that number and insert it into the array
+  #important: the last number must have a space after it or it will be left out
+  numberlist = []
+  numbertracker = []
+
+  for e in numbers:
+    if e == " ":
+      e = ""
+      numberlist.append(currentnum)
+      currentnum = ""
+    currentnum += e
+
+  grid = [ [ 0 for j in range(rows) ] for k in range(rows)]
+
+  w = 0
+  counter = 0
+  for i in range(rows):
+    grid[i][w] = 1
+    w += 1
+    for a in range(w):
+      grid[i][a] = int(numberlist[counter])
+      counter += 1
+  print(grid)
+
+  sum = 0
+  y = 0
+  #start at grid[0][0]
+  #can only check grid[1][0] and [1][1]
+  #each block can only check [i+1][j] and [i+1][j+1] from itself
+  for x in range(rows):
+    sum += grid[x][y]
+    #here, it can only check y = y or y = y + 1
+    
+
+  #should try all possible and then print the numbers that it used
+
+  #print(sum + grid[0][0])
+
+
+  #(2^15) / 2 = 16384 possible routes
+  #15 rows in the triangle
+  #i could make a 2D array where each iteration increases array size by 1 - so top array has size 1, next array has size 2, etc. then I can reference where the selected term is in the array (by using number[i]) and then comparing it to the next array and being like ok, if I selected number[3], then I can only select number[3] or number[4] in the next array to move to
+
+  #I can use lower triangular matrix for this
+
+#Problem 19
+def CountingSundays():
+  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  dayspermonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  #every 4 years, dayspermonth[1] += 1 because of leap year
+
+  daysofweek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+  daycounter = 2
+  yearcounter = 1900
+  daytotal = 0
+  sundaycounter = 0
+
+  #Jan 1, 1900 is a Monday, but Jan 1, 1901 isn't!!! Jan 1, 1901 is a Wednesday. That's why daycounter = 2
+  
+  for j in range(yearcounter, 2001):  #set max to 2001 if you want to check up to the year 2000
+    if j % 4 == 0:   #we already know that 2000 is divisible by 400 so I'm not going to make another function to check for leap years
+      dayspermonth[1] = 29
+    for i in range(len(months)):
+      print(months[i], dayspermonth[i], yearcounter)
+      for y in range(1, dayspermonth[i] + 1):
+        print(daysofweek[daycounter], y)
+        if daysofweek[daycounter] == "Sunday" and y == 1:
+          sundaycounter += 1
+          print(sundaycounter)
+        daycounter += 1
+        daytotal += 1
+        if daycounter == len(daysofweek):
+          daycounter = 0
+
+    dayspermonth[1] = 28
+    yearcounter += 1
+
+  print(sundaycounter)
+
+  #Python has a function to get date, but this is my manual version for it. Also I didn't realize there was a DateTime()
+
+  
+#Problem 20
+def FactorialDigitSum():
+  product = 1
+  n = 100   #so if n = 3, then it will solve for 3!, which is 6
+  for i in range(1, n + 1):
+    product *= i
+  
+  sum = 0
+  temp = ""
+  product = str(product)
+  for j in range(len(product)):
+    temp = int(product[j])
+    sum += temp
+  print(sum)
+  
+
 
 
 #All Problems
@@ -450,4 +580,7 @@ def NumberLetterCounts():
 #CollatzSeq()           #Problem 14
 #LatticePaths()         #Problem 15 - NOT COMPLETE
 #PowerDigitSum()        #Problem 16
-NumberLetterCounts()   #Problem 17 - In Progress
+#NumberLetterCounts()   #Problem 17
+#MaxPathSum1()          #Problem 18 - NOT COMPLETE
+#CountingSundays()      #Problem 19
+FactorialDigitSum()    #Problem 20
