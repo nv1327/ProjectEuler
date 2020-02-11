@@ -559,7 +559,29 @@ def FactorialDigitSum():
     temp = int(product[j])
     sum += temp
   print(sum)
-  
+
+
+#Problem 21
+def DivisorSum(num):
+  sum = 0
+  for i in range(1, num):
+    if num % i == 0:
+      sum += i
+  #print(sum)
+  return sum    #sum of all of a number's divisors
+
+
+def AmicableNumbers():
+  totalsum = 0
+
+  for i in range(1, 10000):
+    j = DivisorSum(i)
+    if i != j:
+      if DivisorSum(j) == i:
+        print(i, j)
+        totalsum += i
+        #totalsum += j - don't need this bc it will go over the next pair with the exact same i and j but that time i will be j so it will just add the other number to the totalsum, making both i and j added to the sum
+  print(totalsum)
 
 
 
@@ -583,4 +605,5 @@ def FactorialDigitSum():
 #NumberLetterCounts()   #Problem 17
 #MaxPathSum1()          #Problem 18 - NOT COMPLETE
 #CountingSundays()      #Problem 19
-FactorialDigitSum()    #Problem 20
+#FactorialDigitSum()    #Problem 20
+#AmicableNumbers()      #Problem 21
